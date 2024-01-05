@@ -1,7 +1,7 @@
 /**
- *  react-minimal-side-navigation
+ *  @ebtechsol/react-side-navigation
  *
- *  @author   abhijithvijayan <https://abhijithvijayan.in>
+ *  @author   ebtechsol <https://ebtechsol.com>
  *  @license  MIT License
  */
 

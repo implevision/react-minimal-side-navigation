@@ -26,7 +26,7 @@ module.exports = {
     filename: 'index.js',
     // https://stackoverflow.com/a/57287049
     libraryTarget: 'umd',
-    library: 'react-minimal-side-navigation',
+    library: '@ebtechsol/react-side-navigation',
     globalObject: 'this', // https://git.io/JTDXW
   },
 

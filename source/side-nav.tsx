@@ -33,6 +33,7 @@ const Navigation: React.FC<SideNavProps> = ({
   onSelect,
   items,
 }) => {
+  const [isParentItemSelected, setIsParentItemSelected] = useState('');
   const [activeSubNav, setActiveSubNav] = useState({
     expanded: true,
     selectedId: activeItemId,
@@ -86,7 +87,7 @@ const Navigation: React.FC<SideNavProps> = ({
           aria-label="side-navigation"
           className="side-navigation-panel"
         >
-          {items.map((item: NavItemProps) => {
+          {items.map((item: NavItemProps, index: number) => {
             const ElemBefore = item.elemBefore;
             const isItemSelected: boolean =
               item.itemId === activeSubNav.selectedId;
@@ -102,9 +103,12 @@ const Navigation: React.FC<SideNavProps> = ({
                       _subNavItem.itemId === activeSubNav.selectedId
                   )) ||
                 false);
-
             return (
-              <ul key={item.itemId} className="side-navigation-panel-select">
+              <ul
+                key={item.itemId}
+                className="side-navigation-panel-select"
+                id={`nav-${index}`}
+              >
                 <li className="side-navigation-panel-select-wrap">
                   <div
                     onClick={(): void => {
@@ -112,7 +116,7 @@ const Navigation: React.FC<SideNavProps> = ({
                       handleClick(item.itemId);
                     }}
                     className={`side-navigation-panel-select-option ${
-                      isItemSelected
+                      isItemSelected || Number(isParentItemSelected) === index
                         ? 'side-navigation-panel-select-option-selected'
                         : ''
                     }`}
@@ -149,6 +153,7 @@ const Navigation: React.FC<SideNavProps> = ({
                                 selectedId: subNavItem.itemId,
                               });
                               handleClick(subNavItem.itemId);
+                              setIsParentItemSelected(String(index));
                             }}
                             className={`side-navigation-panel-select-inner-option ${
                               activeSubNav.selectedId === subNavItem.itemId
